@@ -34,6 +34,7 @@ import type { CheckoutPlanOption } from '../PixEmvCheckoutModal.vue'
 import ProtectedPreviewCanvas from './ProtectedPreviewCanvas.vue'
 import { buildWhatsAppLink } from '../../utils/pixEmv'
 import { publicAsset } from '../../utils/publicAsset'
+import { track } from '../../lib/tracker'
 import { COMPANY_INFO, WAGNER_PROFILE } from '../../data/landing'
 import {
   KIT_BONUSES,
@@ -171,6 +172,7 @@ function selectKitAndScroll(kitId: 'basico' | 'premium') {
 function handleSwitchModalPlan(planId: string) {
   if (planId === 'basico' || planId === 'premium') {
     selectedKitId.value = planId
+    track('kit_switch', { to: planId })
   }
 }
 
@@ -257,6 +259,7 @@ const bonusIcons: Record<string, Component> = {
 
             <a
               href="#kits"
+              data-track="nav-ver-kits"
               class="hidden shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-white/30 bg-navy-deep/35 px-4 py-2 text-xs font-bold text-white backdrop-blur-md transition-colors duration-200 hover:border-cyan-glow hover:bg-navy-deep/55 sm:inline-flex"
             >
               <span class="h-2 w-2 rounded-full bg-emerald-400" aria-hidden="true" />
@@ -396,6 +399,7 @@ const bonusIcons: Record<string, Component> = {
 
                 <button
                   type="button"
+                  data-track="hero-kit-basico"
                   class="group flex cursor-pointer items-center justify-between gap-3 rounded-2xl border border-white/25 bg-navy-deep/55 px-4 py-3 text-left backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_14px_30px_-14px_rgba(2,11,58,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:border-white/45 hover:bg-navy-deep/70 sm:flex-col sm:items-stretch sm:justify-between sm:gap-2.5 sm:py-3.5"
                   @click="selectKitAndScroll('basico')"
                 >
@@ -412,6 +416,7 @@ const bonusIcons: Record<string, Component> = {
 
                 <button
                   type="button"
+                  data-track="hero-kit-premium"
                   class="group relative flex cursor-pointer items-center justify-between gap-3 rounded-2xl border border-cyan-glow/65 bg-gradient-to-br from-navy-deep/85 via-navy-deep/75 to-cobalt/80 px-4 py-3 text-left backdrop-blur-xl shadow-[inset_0_1px_0_rgba(23,221,242,0.35),0_16px_34px_-14px_rgba(2,11,58,0.75)] transition-all duration-200 hover:-translate-y-0.5 hover:border-cyan-glow sm:flex-col sm:items-stretch sm:justify-between sm:gap-2.5 sm:py-3.5"
                   @click="selectKitAndScroll('premium')"
                 >
@@ -691,6 +696,7 @@ const bonusIcons: Record<string, Component> = {
               <div>
                 <button
                   type="button"
+                  :data-track="`tier-${tier.id}`"
                   class="group w-full uppercase"
                   :class="
                     tier.id === 'premium'

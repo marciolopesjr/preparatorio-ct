@@ -16,6 +16,7 @@ import {
 } from 'lucide-vue-next'
 import { COMPANY_INFO } from '../data/landing'
 import { buildWhatsAppLink, generatePixEmvPayload } from '../utils/pixEmv'
+import { track } from '../lib/tracker'
 
 export interface CheckoutPlanOption {
   id: string
@@ -92,6 +93,7 @@ watch(
   () => props.open,
   (isOpen) => {
     if (isOpen) {
+      track('pix_modal_open', { kit: props.plan.id, price: props.plan.price })
       step.value = 1
       copiedEmv.value = false
       copiedCnpj.value = false
@@ -125,6 +127,7 @@ async function copyText(text: string) {
 
 async function copyEmv() {
   await copyText(emvPayload.value)
+  track('pix_copy', { kind: 'emv', kit: props.plan.id })
   copiedEmv.value = true
   if (emvTimer) clearTimeout(emvTimer)
   emvTimer = setTimeout(() => {
@@ -134,6 +137,7 @@ async function copyEmv() {
 
 async function copyCnpj() {
   await copyText(COMPANY_INFO.pixKey)
+  track('pix_copy', { kind: 'chave', kit: props.plan.id })
   copiedCnpj.value = true
   if (cnpjTimer) clearTimeout(cnpjTimer)
   cnpjTimer = setTimeout(() => {
@@ -142,6 +146,7 @@ async function copyCnpj() {
 }
 
 function goToWhatsAppStep() {
+  track('whatsapp_click', { kit: props.plan.id })
   step.value = 2
 }
 
