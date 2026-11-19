@@ -6,9 +6,17 @@
 
 web
 
+## Brand
+
+- **Nome:** Método Construindo Pontes
+- **Subtítulo:** Formação · Capacitação · Resultados
+- **Pilares:** Confiança · Proteção · Conexão · Inovação
+- **Paleta oficial (Brandboard):** `#020B3A`, `#052A83`, `#0878F9`, `#17DDF2`, `#79DDF5`, `#F4F7FF`
+- **Tipografia oficial:** Montserrat (Extra Bold para títulos, Regular/Medium/SemiBold para corpo)
+
 ## Stack
 
-delegated: Static HTML, CSS, and vanilla JavaScript (zero-dependency landing page, instant load, easy deploy anywhere).
+Vue 3, TypeScript, Vite, and Tailwind CSS; static production build in `dist/`.
 
 ## Users
 
@@ -16,10 +24,10 @@ Candidatos ao processo de escolha unificado do Conselho Tutelar e profissionais 
 
 ## Product Purpose
 
-Página de vendas para a pré-venda do Preparatório para Conselheiros Tutelares, aproveitando a campanha especial do Dia do Conselheiro Tutelar (18 de novembro) com condição promocional no Pix: de R$ 99,90 por R$ 29,90.
+Página de vendas do Kit Conselheiro Tutelar 2027 do Método Construindo Pontes, com materiais digitais organizados em módulos visuais sobre o ECA.
 
 ## Constraints & Placeholders
 
-- Oferta confirmada: Pré-venda, de R$ 99,90 por R$ 29,90 no Pix, Promo especial do Dia do Conselheiro.
-- Placeholders a substituir pelo usuário: nome da marca/instituição, link de pagamento/Pix, lista exata de módulos/aulas/materiais e FAQ/garantia final.
+- Oferta atual: Kit 2027, com opções Básico e Premium.
+- Placeholders restantes: carga horária e data de liberação.
 - Sem provas sociais ou métricas inventadas.
